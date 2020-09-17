@@ -76,3 +76,7 @@ class Stack:
 
         
             
+# What is the difference between using an array vs. a linked list when 
+#    implementing a Stack?
+
+# As far as the code I wrote, they're pretty similar. Under the hood, since arrays are contiguous, the array has to be cloned somewhere else in memory that has enough space for the changes that are being made. And then after the updates are done, the original array gets deleted from memory. With a linked list, since the values don't all get stored in memory "next to" each other, so to speak, we only need to change the data in memory associated with the specific node we want instead of changing the entire list
