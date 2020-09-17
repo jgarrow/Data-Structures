@@ -139,7 +139,28 @@ class DoublyLinkedList:
     List and inserts it as the new head node of the List.
     """
     def move_to_front(self, node):
-        pass
+        # input.prev.next = input.next.prev
+        # self.head.prev = input
+        # input.next = self.head
+        # input.prev = None
+
+        # if list is not empty
+        if self.head is not None:
+            # if there's more than 1 thing in list
+            if self.head.next is not None:
+                if node.prev:
+                    node.prev.next = node.next
+                
+                if node.next:
+                    node.next.prev = node.prev
+
+                self.head.prev = node
+                node.next = self.head
+                node.prev = None
+
+                self.head = node
+
+
         
     """
     Removes the input node from its current spot in the 
@@ -153,6 +174,7 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
     def delete(self, node):
+        # input.prev.next = input.next.prev
         pass
 
     """
