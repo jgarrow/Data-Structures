@@ -2,6 +2,9 @@ class Node:
     def __init__(self, value=None, next_node=None):
         self.value = value
         self.next_node = next_node
+
+    def __str__(self):
+        return '{self.value}, next node: {self.next_node}'.format(self=self)
     
     def get_value(self):
         return self.value
@@ -46,7 +49,7 @@ class LinkedList:
         if self.head is None:
             return None
         else:
-            return_value = self.head.get_value()
+            
 
             # if there's only 1 thing in the list, get rid of it
             if self.head == self.tail:
@@ -58,6 +61,8 @@ class LinkedList:
                 # set head to the second node -- the current head's next_node
                 self.head = self.head.get_next_node()
             
+            return_value = self.head.get_value()
+
             return return_value
     
     def remove_tail(self):
