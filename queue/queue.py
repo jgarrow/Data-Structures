@@ -40,37 +40,60 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #    as the underlying storage structure.
 #    Make sure the Queue tests pass.
 
-import sys
-sys.path.insert(1, '../singly_linked_list/')
+# import sys
+# sys.path.insert(1, '../singly_linked_list/')
 
-from singly_linked_list import LinkedList
+# from singly_linked_list import LinkedList
+
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = LinkedList()
+    
+#     def __len__(self):
+#         return self.size
+
+#     def enqueue(self, value):
+#         self.storage.add_to_head(value)
+#         self.size = self.size + 1
+
+#     def dequeue(self):
+#         # make sure size can't go below zero
+#         if self.size > 0:
+#             self.size = self.size - 1
+#         else:
+#             self.size = 0
+
+#         ret_val = self.storage.tail
+
+#         if ret_val is not None:
+#             ret_val = self.storage.tail.get_value()
+
+#         self.storage.remove_tail()
+#         return ret_val
+
+import sys
+sys.path.insert(1, '../doubly_linked_list/') 
+
+from doubly_linked_list import DoublyLinkedList
 
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = LinkedList()
+        self.storage = DoublyLinkedList()
     
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
         self.storage.add_to_head(value)
-        self.size = self.size + 1
+        self.size = self.storage.length
 
     def dequeue(self):
-        # make sure size can't go below zero
-        if self.size > 0:
-            self.size = self.size - 1
-        else:
-            self.size = 0
+        curr_tail = self.storage.remove_from_tail()
+        self.size = self.storage.length
 
-        ret_val = self.storage.tail
-
-        if ret_val is not None:
-            ret_val = self.storage.tail.get_value()
-
-        self.storage.remove_tail()
-        return ret_val
+        return curr_tail
 
 
 #  What is the difference between using an array vs. a linked list when 
