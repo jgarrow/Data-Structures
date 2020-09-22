@@ -17,16 +17,66 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        new_node = BSTNode(value)
+        curr_node = self
+
+        while curr_node:
+            # look on the left side of this node
+            if value < curr_node.value:
+
+                # if there's another node, update
+                if curr_node.left:
+                    curr_node = curr_node.left
+
+                # if curr_node is the leaf, add new_node as left child
+                else:
+                    curr_node.left = new_node
+                    curr_node = None
+            
+            # look on the right side of this node (value that's same as root goes to right)
+            elif value >= curr_node.value:
+
+                # if there's another node, update
+                if curr_node.right:
+                    curr_node = curr_node.right
+
+                # if curr_node is the leaf, add new_node as right child
+                else:
+                    curr_node.right = new_node
+                    curr_node = None
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        curr_node = self
+
+        while curr_node:
+            # look to the right
+            if target > curr_node.value:
+                curr_node = curr_node.right
+
+            # look to the left
+            elif target < curr_node.value:
+                curr_node = curr_node.left
+            
+            # we found it!
+            elif target is curr_node.value:
+                return True
+        
+        return False
 
     # Return the maximum value found in the tree
     def get_max(self):
         pass
+        # curr_node = self
+        # max_value = self.value
+
+        # while curr_node:
+        #     if curr_node.right.value > max_value:
+        #         max_value = curr_node.right.value
+        #         curr_node = curr_node.right
+        #     elif curr_node.left.value 
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
@@ -80,6 +130,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+# bst.in_order_dft()
 print("post order")
 bst.post_order_dft()  
