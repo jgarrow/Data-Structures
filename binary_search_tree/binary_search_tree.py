@@ -10,108 +10,115 @@ This part of the project comprises two days:
    on the BSTNode class.
 """
 class BSTNode:
-    def __init__(self, value):
+    def __init__(self, value=None):
         self.value = value
         self.left = None
         self.right = None
 
     # Insert the given value into the tree
     def insert(self, value):
-        new_node = BSTNode(value)
-        
-        # recursive approach
-        if value < self.value:
-            if self.left is None:
-                self.left = new_node
-            else:
-                self.left.insert(value) # recursive call
-        elif value >= self.value:
-            if self.right is None:
-                self.right = new_node
-            else:
-                self.right.insert(value) # recursive call
+        if self.value is None:
+            self.value = value
+        else:
+            new_node = BSTNode(value)
+
+            # recursive approach
+            if value < self.value:
+                if self.left is None:
+                    self.left = new_node
+                else:
+                    self.left.insert(value) # recursive call
+            elif value >= self.value:
+                if self.right is None:
+                    self.right = new_node
+                else:
+                    self.right.insert(value) # recursive call
 
 
-        # iterative approach
-        # curr_node = self
-        # while curr_node:
-        #     # look on the left side of this node
-        #     if value < curr_node.value:
+            # iterative approach
+            # curr_node = self
+            # while curr_node:
+            #     # look on the left side of this node
+            #     if value < curr_node.value:
 
-        #         # if there's another node, update
-        #         if curr_node.left:
-        #             curr_node = curr_node.left
+            #         # if there's another node, update
+            #         if curr_node.left:
+            #             curr_node = curr_node.left
 
-        #         # if curr_node is the leaf, add new_node as left child
-        #         else:
-        #             curr_node.left = new_node
-        #             curr_node = None # exit loop
-            
-        #     # look on the right side of this node (value that's same as root goes to right)
-        #     elif value >= curr_node.value:
+            #         # if curr_node is the leaf, add new_node as left child
+            #         else:
+            #             curr_node.left = new_node
+            #             curr_node = None # exit loop
+                
+            #     # look on the right side of this node (value that's same as root goes to right)
+            #     elif value >= curr_node.value:
 
-        #         # if there's another node, update
-        #         if curr_node.right:
-        #             curr_node = curr_node.right
+            #         # if there's another node, update
+            #         if curr_node.right:
+            #             curr_node = curr_node.right
 
-        #         # if curr_node is the leaf, add new_node as right child
-        #         else:
-        #             curr_node.right = new_node
-        #             curr_node = None # exit loop
+            #         # if curr_node is the leaf, add new_node as right child
+            #         else:
+            #             curr_node.right = new_node
+            #             curr_node = None # exit loop
 
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
+        if self.value is None:
+            return False
+        else:
+            # recursive method
+            if target is self.value:
+                return True
+            elif target < self.value:
+                if self.left is None: 
+                    return False
+                else:
+                    return self.left.contains(target)
+            elif target > self.value:
+                if self.right is None:
+                    return False
+                else:
+                    return self.right.contains(target)
 
-        # recursive method
-        if target is self.value:
-            return True
-        elif target < self.value:
-            if self.left is None: 
-                return False
-            else:
-                return self.left.contains(target)
-        elif target > self.value:
-            if self.right is None:
-                return False
-            else:
-                return self.right.contains(target)
+            # iterative method        
+            # curr_node = self
+            # while curr_node:
+            #     # look to the right
+            #     if target > curr_node.value:
+            #         curr_node = curr_node.right
 
-        # iterative method        
-        # curr_node = self
-        # while curr_node:
-        #     # look to the right
-        #     if target > curr_node.value:
-        #         curr_node = curr_node.right
-
-        #     # look to the left
-        #     elif target < curr_node.value:
-        #         curr_node = curr_node.left
+            #     # look to the left
+            #     elif target < curr_node.value:
+            #         curr_node = curr_node.left
+                
+            #     # we found it!
+            #     elif target is curr_node.value:
+            #         return True # exit loop
             
-        #     # we found it!
-        #     elif target is curr_node.value:
-        #         return True # exit loop
-        
-        # return False
+            # return False
 
     # Return the maximum value found in the tree
     def get_max(self):
         # only check right branch
         # go right until we reach the end
         # return value at the far most right leaf
+        if self.value is None:
+            return
+        else:
+            curr_node = self
+            max_value = self.value
 
-        curr_node = self
-        max_value = self.value
-
-        while curr_node:
-            if curr_node.right is None:
-                max_value = curr_node.value
-                curr_node = None
-            else:
-                curr_node = curr_node.right
-            
-        return max_value
+            while curr_node:
+                if curr_node.right is None:
+                    max_value = curr_node.value
+                    curr_node = None
+                else:
+                    curr_node = curr_node.right
+                
+            return max_value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
