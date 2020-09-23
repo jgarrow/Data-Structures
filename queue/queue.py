@@ -72,22 +72,46 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #         self.storage.remove_tail()
 #         return ret_val
 
-import sys
-sys.path.insert(1, '../doubly_linked_list/') 
+# import sys
+# sys.path.insert(1, '../doubly_linked_list/') 
 
-from doubly_linked_list import DoublyLinkedList
+# from doubly_linked_list import DoublyLinkedList
+
+# class Queue:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = DoublyLinkedList()
+    
+#     def __len__(self):
+#         return self.size
+
+#     def enqueue(self, value):
+#         self.storage.add_to_head(value)
+#         self.size = self.storage.length
+
+#     def dequeue(self):
+#         curr_tail = self.storage.remove_from_tail()
+#         self.size = self.storage.length
+
+#         return curr_tail
+
+
+import sys
+sys.path.insert(1, '../binary_search_tree/')
+
+from binary_search_tree import BSTNode
 
 class Queue:
     def __init__(self):
         self.size = 0
-        self.storage = DoublyLinkedList()
+        self.storage = BSTNode(None)
     
     def __len__(self):
         return self.size
 
     def enqueue(self, value):
-        self.storage.add_to_head(value)
-        self.size = self.storage.length
+        self.storage.insert(value)
+        self.size += 1
 
     def dequeue(self):
         curr_tail = self.storage.remove_from_tail()
