@@ -160,12 +160,23 @@ class BSTNode:
             self.right.in_order_print()
 
 
-        
-
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self):
-        pass
+        # print value for every node at each "layer" -- print all siblings before moving on to their children
+        nodes = [self]
+        
+        while(len(nodes)):
+            curr_node = nodes[0]
+            print(curr_node.value)
+
+            if curr_node.left:
+                nodes.append(curr_node.left)
+            if curr_node.right:
+                nodes.append(curr_node.right)
+            
+            nodes.pop(0)
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -197,12 +208,12 @@ bst.insert(4)
 bst.insert(2)
 
 bst.bft_print()
-bst.dft_print()
+# bst.dft_print()
 
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft()
-print("in order")
-bst.in_order_print()
-print("post order")
-bst.post_order_dft()  
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft()
+# print("in order")
+# bst.in_order_print()
+# print("post order")
+# bst.post_order_dft()  
