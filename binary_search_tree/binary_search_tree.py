@@ -14,11 +14,16 @@ class BSTNode:
         self.value = value
         self.left = None
         self.right = None
+        # self.order = order
+
+    def __str__(self):
+        return '{self.value} --\nleft: {self.left}\nright: {self.right}'.format(self=self)
 
     # Insert the given value into the tree
     def insert(self, value):
         if self.value is None:
             self.value = value
+            return self
         else:
             new_node = BSTNode(value)
 
@@ -33,6 +38,8 @@ class BSTNode:
                     self.right = new_node
                 else:
                     self.right.insert(value) # recursive call
+            
+            return new_node
 
 
             # iterative approach
@@ -130,14 +137,30 @@ class BSTNode:
 
         fn(self.value)
             
+    def for_each_node(self, fn):
+        if self.left:
+            self.left.for_each_node(fn)
+        
+        if self.right:
+            self.right.for_each_node(fn)
 
+        fn(self)
 
     # Part 2 -----------------------
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self):
-        pass
+        if self.left:
+            self.left.in_order_print()
+        
+        print(self.value)
+
+        if self.right:
+            self.right.in_order_print()
+
+
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -180,6 +203,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-# bst.in_order_dft()
+bst.in_order_print()
 print("post order")
 bst.post_order_dft()  
