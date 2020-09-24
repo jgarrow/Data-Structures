@@ -75,31 +75,50 @@ return elements in Last In First Out order.
 #             return self.storage.remove_tail()
 
 
-import sys
-sys.path.insert(1, '../doubly_linked_list/')
+# import sys
+# sys.path.insert(1, '../doubly_linked_list/')
 
-from doubly_linked_list import DoublyLinkedList
+# from doubly_linked_list import DoublyLinkedList
+
+# class Stack:
+#     def __init__(self):
+#         self.size = 0
+#         self.storage = DoublyLinkedList()
+
+#     def __len__(self):
+#         return self.size
+
+#     def push(self, value):
+#         self.storage.add_to_tail(value)
+#         self.size = self.storage.length
+            
+
+#     def pop(self):
+#         curr_tail = self.storage.remove_from_tail()
+#         self.size = self.storage.length
+
+#         return curr_tail
+        
+        
+import sys
+sys.path.insert(1, '../binary_search_tree/')
+
+from binary_search_tree import BSTNode
 
 class Stack:
     def __init__(self):
         self.size = 0
-        self.storage = DoublyLinkedList()
+        self.storage = BSTNode(None)
 
     def __len__(self):
         return self.size
 
     def push(self, value):
-        self.storage.add_to_tail(value)
-        self.size = self.storage.length
+        self.storage.insert(value)
+        self.size += 1
             
-
-    def pop(self):
-        curr_tail = self.storage.remove_from_tail()
-        self.size = self.storage.length
-
-        return curr_tail
-        
-        
+    def pop(self):  
+        pass
         
             
 # What is the difference between using an array vs. a linked list when 
